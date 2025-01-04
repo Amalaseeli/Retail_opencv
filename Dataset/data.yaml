@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 3
+names: ['crisp', 'kitkat', 'pepsi']
+
+roboflow:
+  workspace: amalacomputervision
+  project: object-detection-with-yolov8-ejiur
+  version: 1
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/amalacomputervision/object-detection-with-yolov8-ejiur/dataset/1

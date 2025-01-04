@@ -1,0 +1,6 @@
+import requests
+
+url = "https://github.com/ultralytics/assets/releases/download/v0.0.0/yolov8n.pt"
+response = requests.get(url)
+with open("yolov8n.pt", "wb") as f:
+    f.write(response.content)
