@@ -2,12 +2,12 @@ train: ../train/images
 val: ../valid/images
 test: ../test/images
 
-nc: 3
-names: ['crisp', 'kitkat', 'pepsi']
+nc: 8
+names: ['coke-bottle', 'coke-can', 'crisp', 'kitkat', 'lemon puff', 'pepsi-bottle', 'pepsi-can', 'unknown']
 
 roboflow:
   workspace: amalacomputervision
-  project: object-detection-with-yolov8-ejiur
-  version: 1
+  project: object-detection-yolov8-behtc
+  version: 2
   license: CC BY 4.0
-  url: https://universe.roboflow.com/amalacomputervision/object-detection-with-yolov8-ejiur/dataset/1
+  url: https://universe.roboflow.com/amalacomputervision/object-detection-yolov8-behtc/dataset/2

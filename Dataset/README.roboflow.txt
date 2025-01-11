@@ -1,8 +1,8 @@
 
-Object detection with yolov8 - v1 2024-12-29 1:40am
+Object detection-Yolov8 - v2 2025-01-11 9:44pm
 ==============================
 
-This dataset was exported via roboflow.com on December 29, 2024 at 1:41 AM GMT
+This dataset was exported via roboflow.com on January 11, 2025 at 9:45 PM GMT
 
 Roboflow is an end-to-end computer vision platform that helps you
 * collaborate with your team on computer vision projects
@@ -17,7 +17,7 @@ visit https://github.com/roboflow/notebooks
 
 To find over 100k other datasets and pre-trained models, visit https://universe.roboflow.com
 
-The dataset includes 53 images.
+The dataset includes 135 images.
 Pepsi-crisp-chocolate are annotated in YOLOv8 format.
 
 The following pre-processing was applied to each image:
