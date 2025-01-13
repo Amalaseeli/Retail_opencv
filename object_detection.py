@@ -11,13 +11,13 @@ cap.set(4, 720)   # Height
 
 model = YOLO('best_model.pt')  # Load the YOLO model
 prices = {
-    'coke-bottle' : 1.25,
-    'coke-can' : 1.05,
-    'crisp' : 1.25,
-    'kitkat': 0.85,
-    'lemon puff' : 75,
-    'pepsi-bottle' : 1.09,
-    'pepsi-can' : 1.00
+    'coke-bottle' : '£1.25',
+    'coke-can' : '£1.05',
+    'crisp' : '£1.25',
+    'kitkat': '85P',
+    'lemon puff' : '75p',
+    'pepsi-bottle' : '£1.09',
+    'pepsi-can' : '£1.00'
 }
 
 classNames = ['coke-bottle', 'coke-can', 'crisp', 'kitkat', 'lemon puff', 'pepsi-bottle', 'pepsi-can', 'unknown']  # Known classes
@@ -53,7 +53,7 @@ while True:
                 #label = f"{classNames[cls]} {conf}"
                 className = classNames[cls]
                 price= prices.get(className, "N/A")
-                label = f"{className} £{price}"
+                label = f"{className} {price}"
                 print(label)
             else:  # Unknown object
                 #label = f"UNKNOWN {conf}"
