@@ -14,7 +14,7 @@ prices = {
     'coke-bottle' : '£1.25',
     'coke-can' : '£1.05',
     'crisp' : '£1.25',
-    'kitkat': '85P',
+    'kitkat': '85p',
     'lemon puff' : '75p',
     'pepsi-bottle' : '£1.09',
     'pepsi-can' : '£1.00'
@@ -22,6 +22,20 @@ prices = {
 
 classNames = ['coke-bottle', 'coke-can', 'crisp', 'kitkat', 'lemon puff', 'pepsi-bottle', 'pepsi-can', 'unknown']  # Known classes
 MIN_CONFIDENCE = 0.35  # Confidence threshold for known classes
+
+
+def parse_price(price_str):
+    # Normalize string: lowercase, remove currency symbols, and strip spaces
+    price_str = price_str.lower().strip()
+    
+    if 'p' in price_str:  # Handle prices in pence (e.g., '75p')
+        price_str = price_str.replace('p', '').strip()
+        return float(price_str) / 100
+    elif '£' in price_str:  # Handle prices in pounds (e.g., '£1.25')
+        price_str = price_str.replace('£', '').strip()
+        return float(price_str)
+    else:
+        raise ValueError(f"Invalid price format: {price_str}")
 
 
 def draw_text_with_pillow(image, text, position, font_path="arial.ttf", font_size=32):
@@ -36,7 +50,7 @@ while True:
     sucess, img =cap.read()
     results= model(img, stream=True)
 
-
+    total_price = 0.0
 
     for result in results:
         boxes = result.boxes
@@ -52,8 +66,10 @@ while True:
             if cls is not None:  # Known object
                 #label = f"{classNames[cls]} {conf}"
                 className = classNames[cls]
-                price= prices.get(className, "N/A")
-                label = f"{className} {price}"
+                price_str = prices.get(className, "N/A")
+                price = parse_price(price_str) if price_str != "N/A" else 0.0
+                total_price += price
+                label = f"{className} {price_str}"
                 print(label)
             else:  # Unknown object
                 #label = f"UNKNOWN {conf}"
@@ -64,6 +80,8 @@ while True:
             #cvzone.putTextRect(img, "£" , label, (max(10, x1), max(35, y1)))
             img = draw_text_with_pillow(img, label, (max(10, x1), max(35, y1)))
 
+    total_price_label = f"Total: £{total_price:.2f}"
+    img = draw_text_with_pillow(img, total_price_label, (10, 50))
 
     # Display the result
     cv2.imshow("Image", img)
