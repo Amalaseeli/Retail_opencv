@@ -8,6 +8,6 @@ COPY best_model.pt /app/best_model.pt
 COPY object_detection.py /app/object_detection.py
 
 
-RUN pip install --no-cache-dir --upgrade pip && pip install --no-cache-dir -r requirements.txt
+RUN pip install -r requirements.txt
 
 CMD ["python", "object_detection.py"]
